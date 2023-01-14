@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" integrity="sha512-YFENbnqHbCRmJt5d+9lHimyEMt8LKSNTMLSaHjvsclnZGICeY/0KYEeiHwD1Ux4Tcao0h60tdcMv+0GljvWyHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/chat.css">
+    <title>Chat-club_informatique</title>
+</head>
+<body>
+<div class="container">
+
+        <div class="d1">
+            <div class="container-utilisateur">
+                <ul class="utilisateur">
+                    <li class="usr" id="me">
+                        <span id="sp1"></span>
+                        <span id="username">{Nom_De_la_personn_connecter}</span>
+                        <span class="rond-enligne connecter"></span>
+                    </li>
+                    <!-- je parcours la base de donnée et j'affiche tout les utilisateurs de la base de donnée" -->
+                    <li class="usr">
+                        <span id="autreUser">{nom_des_autres_utilisateur}</span>
+                        <span class="rond-enligne deconnecter "></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+       
+    <div class="d2">
+        <div class="container-1">
+                <div class="bande-1">
+                    <div class="block-1"></div>
+                        <div class="block-1-information">
+                            <ul class="nom-club">CLUB_INFO-CHAT</ul>
+                            <ul id="nonAutre">{Nom-personne} <span class="ecrire">{ecrire...}</span> </ul>
+                        </div>
+                </div>
+
+                    <div id="corps-discution"> 
+                            <ul class="recue">
+                                <li id="tex-recue">{message_autre_user}</li>
+                            </ul>
+                            <ul class="envoyer">
+                                <li class="text-envoie">{message_user}</li>
+                            </ul> 
+                    </div>
+            
+                    <div class="bande-2">
+                            <form id="form">
+                                <div id="input-div">
+                                <input type="text" id="message" placeholder="message..." autofocus autocomplete="off">
+                                </div>
+                                <button  class="icon-send">
+                                    <i class="bi bi-send-fill"></i>
+                                </button>
+                            </form>
+                    </div>
+
+        </div>
+            <div class="d3">
+                <!-- <button methode="POST"></button> -->
+                <a href="/connection"> <button type="submit">Deconnexion</button> </a>
+            </div>
+    </div>
+       
+</div>
+
+    <canvas id="canvas1"></canvas>
+    <script src="/js/particule.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/home.js"></script>
+
+    <!--<script src="./socket.js"></script> -->
+</body> 
+</html>
