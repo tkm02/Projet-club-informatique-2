@@ -71,7 +71,7 @@ const connectionUser = (req, res) => {
   //Required
   if (!email || !password) {
     console.log("Please fill in all the fields");
-    res.render("login", {
+    res.render("connection", {
       email,
       password,
     });

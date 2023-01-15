@@ -81,6 +81,7 @@ body{
     height: 700px;
 
 }
+
 .d1,.d2,.d3{
     width: 50%;
     /* border: 2px solid #33c5fb; */
@@ -135,9 +136,9 @@ body{
 }
 .container-1{
     display: flex;
-    flex-wrap: wrap;
-    /* width: 100%; */
-    /* width: 100px; */
+    width: 410px;
+    height: 800px;
+    /* background-color: #05E395; */
     flex-direction: column;
     border-radius: 15px;
     margin: 50px -60px;
@@ -146,11 +147,7 @@ body{
     
 
 }
-*,::after,::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 #canvas1{
     z-index: -1000;
     position: absolute;
@@ -180,7 +177,7 @@ li{
     font-size: 1.2em;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
 }
-.nom-base-de-donnee{
+#autreUser{
     font-style: italic;
     margin: 1.2px;
 }
@@ -245,24 +242,52 @@ i{
     width: 100%;
 }
 .recue{
-    width: 55%;
-    border-radius : 50px 50px 50px 0px ;
-  
+    /* width: 200px; */
+    /* height: 45px; */
     display: flex;
+    flex-direction: column;
+    border-radius : 25px 25px 25px 0px ;
+    /* display: flex; */
+    max-width: 350px;
     background-color: #fff;
     margin: 20px;
-    padding: 15px;
+    padding: 10px 5px;
     background-color: #33c5fb;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
 .envoyer{
-    width: 55%;
-    border-radius: 50px 50px 0px 50px;
     display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    /* width: 350px; */
+    border-radius: 25px 25px 0px 25px;
     background-color: #fff;
-    margin: 10px 160px;
-    padding: 15px;
+    margin: 20px;
+    margin-left: 10em ; ;
+    padding: 10px 5px;
+    /* background-color: #33c5fb; */
+    color: #333;
+    
+    font-family: Arial, Helvetica, sans-serif;
+}
+.heur-envoie{
+    /* border: 2px solid; */
+    /* width: 60px; */
+    margin: 5px;
+    display: flex;
+    justify-content: end;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #2A4CBB;
+
+}
+.heur-recue{
+    margin: 5px 0;
+    display: flex;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #2A4CBB;
 }
 
 

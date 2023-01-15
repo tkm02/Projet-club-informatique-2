@@ -11,7 +11,7 @@ loginCheck(passport);
 
 dotenv.config({path:'process.env'});
 app.set("view engine", "ejs");
-app.use(express.json())
+app.use(express.json());
 app.use(session({
   secret:'oneboy',
   saveUninitialized: true,

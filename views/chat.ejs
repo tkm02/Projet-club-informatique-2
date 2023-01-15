@@ -16,14 +16,17 @@
                 <ul class="utilisateur">
                     <li class="usr" id="me">
                         <span id="sp1"></span>
-                        <span id="username">{Nom_De_la_personn_connecter}</span>
+                        <span id="username"><%= user.username %></span>
                         <span class="rond-enligne connecter"></span>
                     </li>
                     <!-- je parcours la base de donnée et j'affiche tout les utilisateurs de la base de donnée" -->
-                    <li class="usr">
-                        <span id="autreUser">{nom_des_autres_utilisateur}</span>
-                        <span class="rond-enligne deconnecter "></span>
-                    </li>
+                 
+                        <li class="usr">
+                            <span id="autreUser"></span>
+                            <span class="rond-enligne deconnecter "></span>
+                        </li>
+       
+                    
                 </ul>
             </div>
         </div>
@@ -39,12 +42,8 @@
                 </div>
 
                     <div id="corps-discution"> 
-                            <ul class="recue">
-                                <li id="tex-recue">{message_autre_user}</li>
-                            </ul>
-                            <ul class="envoyer">
-                                <li class="text-envoie">{message_user}</li>
-                            </ul> 
+                            <ul class="recue" id="text-recue">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit dicta, repellat ducimus nihil <span class="heur-recue">22:18</span></ul>
+                            <ul class="envoyer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, quisquam doloremque. Expedita omnis impedit <span class="heur-envoie">22:18</span></ul> 
                     </div>
             
                     <div class="bande-2">
@@ -60,6 +59,7 @@
 
         </div>
             <div class="d3">
+                <div id="info"></div>
                 <!-- <button methode="POST"></button> -->
                 <a href="/connection"> <button type="submit">Deconnexion</button> </a>
             </div>
@@ -70,7 +70,7 @@
     <canvas id="canvas1"></canvas>
     <script src="/js/particule.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/home.js"></script>
+    <script type="module" src="/js/home.js"></script>
 
     <!--<script src="./socket.js"></script> -->
 </body> 
