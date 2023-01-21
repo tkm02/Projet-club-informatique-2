@@ -3,7 +3,7 @@ const protectRoute = (req, res, next) =>{
       return next();
     }
     console.log('Please log in to continue');
-    res.redirect('/connection');
+    res.redirect('/connexion');
   }
   const allowIf = (req, res, next) =>{
     if (!req.isAuthenticated()) {

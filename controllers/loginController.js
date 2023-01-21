@@ -5,7 +5,7 @@ const passport = require('passport');
 //routes pour servir les page : GET
 
 const connexionView = (req,res)=>{
-    res.render("connection",{});
+    res.render("connexion",{});
 }
 
 const inscriptionView =(req,res)=>{
@@ -53,7 +53,7 @@ const inscriptionUser =(req,res)=>{
                         res.status(500).json({err})
                       }
                       else{
-                        res.redirect('/connection')
+                        res.redirect('/connexion')
                       }
                     })
                     .catch((err) => console.log(err));
@@ -71,14 +71,14 @@ const connectionUser = (req, res) => {
   //Required
   if (!email || !password) {
     console.log("Please fill in all the fields");
-    res.render("connection", {
+    res.render("connexion", {
       email,
       password,
     });
   } else {
     passport.authenticate("local", {
       successRedirect: "/chat",
-      failureRedirect: "/connection",
+      failureRedirect: "/connexion",
       failureFlash: true,
     })(req, res);
   }

@@ -91,6 +91,8 @@ body{
 .d1{
     height: 100vh;
     margin: 0;
+    z-index: -10;
+    /* display: none; */
     /* height: 100%; */
 }
 
@@ -189,6 +191,7 @@ li{
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-color: #2a4cbb;
+    overflow-x: hidden;
 }
 .bande-2{
     background-color: #fff;
@@ -241,38 +244,39 @@ i{
     flex-direction: row;
     width: 100%;
 }
+
 .recue{
-    /* width: 200px; */
-    /* height: 45px; */
     display: flex;
     flex-direction: column;
     border-radius : 25px 25px 25px 0px ;
-    /* display: flex; */
-    max-width: 350px;
+    max-width: 400px;
     background-color: #fff;
     margin: 20px;
-    padding: 10px 5px;
+    padding: 15px 5px;
     background-color: #33c5fb;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
+    /* align-items: center; */
+    /* justify-content: center; */
 }
 .envoyer{
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    /* width: 350px; */
+    flex-wrap: wrap;
     border-radius: 25px 25px 0px 25px;
     background-color: #fff;
     margin: 20px;
-    margin-left: 10em ; ;
+    margin-left: 10em ; 
     padding: 10px 5px;
-    /* background-color: #33c5fb; */
     color: #333;
+    /* align-items: center;
+    justify-content: center; */
     
     font-family: Arial, Helvetica, sans-serif;
 }
 .heur-envoie{
-    /* border: 2px solid; */
+    border: 2px solid;
     /* width: 60px; */
     margin: 5px;
     display: flex;
@@ -290,7 +294,21 @@ i{
     color: #2A4CBB;
 }
 
-
+#info{
+    color: #05E395;
+    box-shadow: #333 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /* border: 2px solid; */
+    height: 20px;
+    margin: 20px;
+    display: flex;
+    width: auto;
+}
+/* 
+.salon{
+    border: 2px solid;
+} */
 
 
 

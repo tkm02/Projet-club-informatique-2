@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,17 +14,29 @@
         <div class="d1">
             <div class="container-utilisateur">
                 <ul class="utilisateur">
-                    <li class="usr" id="me">
+                    <!-- <li class="usr" id="me">
                         <span id="sp1"></span>
-                        <span id="username"><%= user.username %></span>
+                        <span id="username"></span>
                         <span class="rond-enligne connecter"></span>
-                    </li>
+                    </li> -->
                     <!-- je parcours la base de donnée et j'affiche tout les utilisateurs de la base de donnée" -->
                  
-                        <li class="usr">
-                            <span id="autreUser"></span>
-                            <span class="rond-enligne deconnecter "></span>
-                        </li>
+                            <% users.forEach(use => { %>
+
+                                <% if (use.username == user.username ) { %>
+                                    <li class="usr" id="me">
+                                        <span id="sp1"></span>
+                                        <span id="username"><%= use.username %></span>
+                                        <span class="rond-enligne connecter"></span>
+                                    </li>
+                                <% } %>
+                                <li class="usr">
+                                    <span id="autreUser"><%= use.username %> </span>
+                                    <span class="rond-enligne deconnecter "></span>
+                                </li>
+                                
+                            <% }) %>
+                            
        
                     
                 </ul>
@@ -37,22 +49,21 @@
                     <div class="block-1"></div>
                         <div class="block-1-information">
                             <ul class="nom-club">CLUB_INFO-CHAT</ul>
-                            <ul id="nonAutre">{Nom-personne} <span class="ecrire">{ecrire...}</span> </ul>
+                            <ul id="nonAutre"><span id="ecrire"></span> </ul>
                         </div>
                 </div>
 
                     <div id="corps-discution"> 
-                            <ul class="recue" id="text-recue">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus suscipit dicta, repellat ducimus nihil <span class="heur-recue">22:18</span></ul>
-                            <ul class="envoyer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, quisquam doloremque. Expedita omnis impedit <span class="heur-envoie">22:18</span></ul> 
+            
                     </div>
             
                     <div class="bande-2">
                             <form id="form">
                                 <div id="input-div">
-                                <input type="text" id="message" placeholder="message..." autofocus autocomplete="off">
+                                    <input type="text" id="message" placeholder="message..." autofocus autocomplete="off" onkeypress="writting()" onblur="noWritting()">
                                 </div>
-                                <button  class="icon-send">
-                                    <i class="bi bi-send-fill"></i>
+                                <button type="submit" class="icon-send">
+                                    <i class="bi bi-send-fiulll"></i>
                                 </button>
                             </form>
                     </div>
@@ -60,17 +71,20 @@
         </div>
             <div class="d3">
                 <div id="info"></div>
-                <!-- <button methode="POST"></button> -->
-                <a href="/connection"> <button type="submit">Deconnexion</button> </a>
+                <div class="salon">
+
+                </div>
+                <a href="/connexion"> <button type="submit">Deconnexion</button> </a>
             </div>
     </div>
        
 </div>
 
     <canvas id="canvas1"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js" integrity="sha512-YeeA/Qxn5hYdkukScTCNNOhTrv1C2RubAGButJ1rmgQwZf/HdRaCGl+JAVkqsqaNRaYNHdheiuKKuPf9mDcqKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/js/particule.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script type="module" src="/js/home.js"></script>
+    <script src="/js/chat.js"></script>
 
     <!--<script src="./socket.js"></script> -->
 </body> 

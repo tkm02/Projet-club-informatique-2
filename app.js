@@ -5,6 +5,7 @@ const mongoose      =  require('mongoose');
 const dotenv        =  require('dotenv');
 const userRoutes    =  require('./routes/login');
 const {loginCheck}  =  require('./auth/passport');
+const Chat          =  require('./models/chat');
 const session = require("express-session");
 const passport = require('passport');
 loginCheck(passport);
@@ -37,8 +38,39 @@ mongoose.connect(`${database}`,
 var io  = require('socket.io')(server);
 //TODO
 
+io.on('connection', (socket)=> {
+  console.log('un utilisateur est en ligne');
+  socket.on('username',(username)=>{
+    // console.log(username); 
+    socket.username = username;
+    socket.broadcast.emit('newUser',socket.username);
+
+    Chat.find((err,message)=>{
+      socket.emit('oldMessages',message);
+    })
+  });
+
+  socket.on('message',(message)=>{
+    var chat = new Chat();
+    chat.content = message;
+    chat.sender = socket.username;
+    chat.save();
+    socket.broadcast.emit('messageAll',{message : message ,username: socket.username});
+  });
+  socket.on('writting',(username)=>{
+    socket.broadcast.emit('writting',username);
+  });
+  socket.on('noWritting',()=>{
+    socket.broadcast.emit('noWritting');
+  });
+
+  socket.on('disconnect',()=>{
+    console.log('un utilisateur deconnecter');
+    socket.broadcast.emit("quitUser",socket.username);
+  })
+});
 
 
 const PORT = (process.env.PORT || 3000);
-server.listen(PORT,console.log('Notre server demare sur le port : ' + `http://localhost:${PORT}`));
+server.listen(PORT,console.log('Notre server demare sur le port : ' + `http://localhost:${PORT}/connexion`));
 
