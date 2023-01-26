@@ -29,9 +29,9 @@ app.get('/',(req,res)=>{
   res.send('hello');
 }); 
 
-// const database = process.env.MONGOLAB_URI;
+const database = process.env.MONGOLAB_URI;
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb+srv://tuo:hVcEyGxXnNw1bb6S@cluster0.6wcynnf.mongodb.net/?retryWrites=true&w=majority', 
+mongoose.connect(`${database}`, 
 {useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('connexion a mongodb reussie!'))
 .catch(err => console.log(err,'impossible de se connecter verifie et ressaie'));
