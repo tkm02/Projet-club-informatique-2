@@ -509,8 +509,9 @@ i{
   
   @media all and (max-width: 376px){
     .toggle{ 
+        /* border: 2px solid; */
         right: 10%;
-        top: 2%;
+        top: 8%;
         font-size: 1.5em;
         color: #333;
     }
@@ -542,5 +543,24 @@ i{
         flex-direction: column;
         overflow-y: scroll;
         justify-content: start;
+    }
+}
+
+@media all and (max-height: 623px){
+    .container-1{
+        display: flex;
+        width: 360px;
+        height: 530px;
+        flex-direction: column;
+        border-radius: 15px;
+        margin: 50px -60px;
+        position: relative;
+        /* border: 2px solid; */
+        -webkit-box-shadow : -9px 2px 64px -35px rgba(0,0,0,0.73) ;
+        
+    
+    }
+    .container-utilisateur{
+        height: 580px;
     }
 }

@@ -1,4 +1,4 @@
-var socket = io.connect('https://chat-club-info.onrender.com');
+var socket = io.connect('http://192.168.1.32:5502/');
 const FormChat = document.getElementById('form');
 var corpsDiscution = document.getElementById("corps-discution");
 var userAll = document.querySelectorAll('.usr');
