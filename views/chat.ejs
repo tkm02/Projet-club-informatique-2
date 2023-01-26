@@ -4,46 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" integrity="sha512-YFENbnqHbCRmJt5d+9lHimyEMt8LKSNTMLSaHjvsclnZGICeY/0KYEeiHwD1Ux4Tcao0h60tdcMv+0GljvWyHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/chat.css">
     <title>Chat-club_informatique</title>
 </head>
 <body>
+    <div class="toggle">
+        <i class="fa-solid fa-bars ouvrir"></i>
+        <i class="fa-solid fa-xmark fermer"></i>
+    </div>
 <div class="container">
-
-        <div class="d1">
+   
+        <div class="d1" id="d1">
             <div class="container-utilisateur">
                 <ul class="utilisateur">
-                    <!-- <li class="usr" id="me">
-                        <span id="sp1"></span>
-                        <span id="username"></span>
-                        <span class="rond-enligne connecter"></span>
-                    </li> -->
-                    <!-- je parcours la base de donnée et j'affiche tout les utilisateurs de la base de donnée" -->
-                 
+                    <select name="receiver" id="options">
+                        <option value="A tous">A tous </option>
+                        <% users.forEach(use => { %>
+                            <option value="<%= use.username %>"><%= use.username %></option>
+                        <% }) %>                    
+                        
+                    </select>
                             <% users.forEach(use => { %>
-
                                 <% if (use.username == user.username ) { %>
                                     <li class="usr" id="me">
-                                        <span id="sp1"></span>
                                         <span id="username"><%= use.username %></span>
                                         <span class="rond-enligne connecter"></span>
                                     </li>
                                 <% } %>
-                                <li class="usr">
-                                    <span id="autreUser"><%= use.username %> </span>
-                                    <span class="rond-enligne deconnecter "></span>
-                                </li>
-                                
-                            <% }) %>
-                            
-       
-                    
+                                <li class="usr" >
+                                    <span id="autreUser"><%= use.username %></span>
+                                    <span class="rond-enligne"></span>
+                                </li>    
+                            <% }) %>                    
                 </ul>
+               
             </div>
         </div>
        
     <div class="d2">
+        
         <div class="container-1">
                 <div class="bande-1">
                     <div class="block-1"></div>
@@ -63,18 +63,16 @@
                                     <input type="text" id="message" placeholder="message..." autofocus autocomplete="off" onkeypress="writting()" onblur="noWritting()">
                                 </div>
                                 <button type="submit" class="icon-send">
-                                    <i class="bi bi-send-fiulll"></i>
+                                    <i class="fa-solid fa-paper-plane"></i>
                                 </button>
                             </form>
                     </div>
 
         </div>
-            <div class="d3">
-                <div id="info"></div>
-                <div class="salon">
 
-                </div>
+            <div class="d3">
                 <a href="/connexion"> <button type="submit">Deconnexion</button> </a>
+                <div id="info"></div>
             </div>
     </div>
        

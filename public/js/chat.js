@@ -1,10 +1,33 @@
 var socket = io.connect('ws://localhost:5502');
 const FormChat = document.getElementById('form');
 var corpsDiscution = document.getElementById("corps-discution");
+var userAll = document.querySelectorAll('.usr');
+///////////////////////////////////////////////
 
-const username = document.getElementById('username').textContent;
+let toggle = document.querySelector('.toggle');
+let body = document.querySelector('body');
+let d1 = document.getElementById('d1');
+toggle.addEventListener('click',()=>{
+    if(body.classList.contains('open')){
+        // fermer le menu
+        // toggle.style.color='#fff';
+        body.classList.remove('open');
+
+    }else{
+        // ouvrir le menu.
+        body.classList.add('open');
+    }
+})
+
+
+///////////////////////////////////////////////
+
+var username = document.getElementById('username').textContent;
+console.log(username);
 socket.emit('username', username);
+socket.emit('oldWhispers',username);
 document.title = username + ' - ' + document.title;
+
 
 var info = document.getElementById('info');
 
@@ -12,8 +35,37 @@ socket.on('newUser',(username)=>{
     info.textContent = `${username} est en ligne...`;
 });
 
+socket.on('oldWhispers',(message)=>{
+    console.log(message);
+    message.forEach(msg=>{
+        // UserEnvoie.textContent = msg.sender; 
+        const ulRecue = document.createElement('ul');
+            ulRecue.classList.add('messagePrivé');
+            const liRecue = document.createElement('li');
+            liRecue.classList.add('li-recue');
+            liRecue.innerText = `message privé de ${msg.sender} : ${msg.content}`;
+            ulRecue.appendChild(liRecue);
+            corpsDiscution.appendChild(ulRecue);
+    })
+})
+socket.on('enligne',(name)=>{
+    console.log(name);
+    userAll.forEach((el)=>{
+        el.childNodes[3].classList.remove("deconnecter");
+        if (el.innerText == name) {
+            el.childNodes[3].classList.add("connecter");
+        }
+
+    });
+})
+
 socket.on('quitUser',(username)=>{
     info.textContent =`${username} est deconnecter.`;
+    userAll.forEach((el)=>{
+        if (el.innerText == username) {
+            el.childNodes[3].classList.add("deconnecter");
+        }
+    });
 });
 
 socket.on('oldMessages',(messages)=>{
@@ -38,19 +90,12 @@ socket.on('oldMessages',(messages)=>{
         }
     });
 })
-var tabUser =[];
-
-const userAll = document.querySelectorAll('li');
-userAll.forEach(el=>{
-    console.log(el);
-    el.addEventListener('click',(e)=>{
-        e.preventDefault();
-        alert(el.innerText);
-    });
-});
 
 
 
+
+var receiver = document.getElementById('options').value;
+document.getElementById('nonAutre').textContent = receiver;
 
 FormChat.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -59,22 +104,31 @@ FormChat.addEventListener('submit',(e)=>{
     var minutes = date.getMinutes();
     var msg = document.getElementById('message').value;
     document.getElementById('message').value = "";
-    console.log(msg);
+    receiver = document.getElementById('options').value;
+    document.getElementById('nonAutre').textContent = receiver;
+    console.log(receiver);
     
     if(msg.length > 0){
-        const ulenvoyer = document.createElement('ul');
-        ulenvoyer.classList.add('envoyer');
-        const lienvoyer = document.createElement('li');
-        const heurRecue = document.createElement('span');
-        heurRecue.classList.add('heur-recue');
-        heurRecue.innerText = `${heures}:${minutes}`;
-        lienvoyer.classList.add('li-envoyer');
-        lienvoyer.innerText = `${username} : ${msg}`;
-        // lienvoyer.style.width='150px';
-        ulenvoyer.appendChild(lienvoyer);
-        ulenvoyer.appendChild(heurRecue);
-        corpsDiscution.appendChild(ulenvoyer);
-        socket.emit('message',msg);
+
+        socket.emit('message',msg,receiver);
+
+    
+
+            const ulenvoyer = document.createElement('ul');
+            ulenvoyer.classList.add('envoyer');
+            const lienvoyer = document.createElement('li');
+            const heurRecue = document.createElement('span');
+            heurRecue.classList.add('heur-recue');
+            heurRecue.innerText = `${heures}:${minutes}`;
+            lienvoyer.classList.add('li-envoyer');
+            lienvoyer.innerText = `${username} : ${msg}`;
+            // lienvoyer.style.width='150px';
+            ulenvoyer.appendChild(lienvoyer);
+            ulenvoyer.appendChild(heurRecue);
+            corpsDiscution.appendChild(ulenvoyer);
+
+        
+       
        
     }
     else{
@@ -104,6 +158,27 @@ socket.on('messageAll',(contenue)=>{
         corpsDiscution.appendChild(ulRecue);
 });
 
+socket.on('whisper',(content=>{
+    
+    var date = new Date();
+    var heures = date.getHours();
+    var minutes = date.getMinutes();
+    const UserEnvoie = document.getElementById('nonAutre');
+    UserEnvoie.textContent = content.sender; 
+    const ulRecue = document.createElement('ul');
+        ulRecue.classList.add('messagePrivé');
+        const liRecue = document.createElement('li');
+        const heurEnvoie = document.createElement('span');
+        heurEnvoie.classList.add('heur-recue');
+        heurEnvoie.innerText = `${heures}:${minutes}`;
+        liRecue.classList.add('li-recue');
+        liRecue.innerText = `${content.sender} : ${content.message}`;
+        // lienvoyer.style.width='150px';
+        ulRecue.appendChild(liRecue);
+        ulRecue.appendChild(heurEnvoie);
+        corpsDiscution.appendChild(ulRecue);
+}));
+
 function writting(){
     socket.emit('writting', username);
 }
@@ -120,3 +195,4 @@ socket.on('writting',(username)=>{
 socket.on('noWritting',()=>{
     document.getElementById('nonAutre').textContent = " ";
 });
+
