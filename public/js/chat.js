@@ -1,4 +1,4 @@
-var socket = io.connect('ws://192.168.1.32:5502/');
+var socket = io.connect('http://localhost:5000');
 const FormChat = document.getElementById('form');
 var corpsDiscution = document.getElementById("corps-discution");
 var userAll = document.querySelectorAll('.usr');
@@ -18,8 +18,6 @@ toggle.addEventListener('click',()=>{
         body.classList.add('open');
     }
 })
-
-
 ///////////////////////////////////////////////
 
 var username = document.getElementById('username').textContent;

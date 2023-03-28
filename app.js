@@ -33,8 +33,8 @@ const database = process.env.MONGOLAB_URI;
 mongoose.set('strictQuery', false);
 mongoose.connect(`${database}`, 
 {useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => console.log('connexion a mongodb reussie!'))
-.catch(err => console.log(err,'impossible de se connecter verifie et ressaie'));
+.then(() => console.log('connexion a mongodb réussie!'))
+.catch(err => console.log(err,'impossible de se connecter vérifie et réessaie'));
 
 var io  = require('socket.io')(server);
 //TODO
@@ -90,7 +90,7 @@ io.on('connection', (socket)=> {
               socketReceiver.emit('whisper',{sender : socket.username, message : message});
             }
             var chat = new Chat();
-            chat.content = message;
+            chat.content = message; 
             chat.sender = socket.username;
             chat.receiver = receiver;
             chat.save();
@@ -112,12 +112,12 @@ io.on('connection', (socket)=> {
     if(index > -1){
       connectedUsers.splice(index, 1);
     }
-    console.log('un utilisateur deconnecter');
+    console.log('un utilisateur déconnecté');
     socket.broadcast.emit("quitUser",socket.username);
   })
 });
 
 
-const PORT = (process.env.PORT || 3000);
-server.listen(PORT,console.log('Notre server demare sur le port : ' + `http://localhost:${PORT}/connexion`));
+const PORT = (5000);
+server.listen(PORT,console.log('Notre serveur démarre sur le port : ' + `http://localhost:${PORT}/connexion`));
 
