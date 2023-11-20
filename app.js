@@ -28,7 +28,7 @@ app.use('/',userRoutes);
 app.get('/',(req,res)=>{
   res.send('hello');
 }); 
-
+  
 const database = process.env.MONGOLAB_URI;
 mongoose.set('strictQuery', false);
 mongoose.connect(`${database}`, 

@@ -8,7 +8,7 @@ const chatView = (req,res)=>{
     res.render("chat",{user :req.user, users});
     // res.status(200).json(user);
   })
-  .catch(err=>{res.status(500).json(err)})
+  .catch(err=>{res.status(500).json(err)});
    
     // console.log(req.User);
 
